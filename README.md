@@ -12,6 +12,7 @@ a means to consolidate my Physics learning.
 3. Basic Thermodynamics and Statistical Mechanics (Summary of PC2230 and PC4241)
 4. Basic Electricity and Magnetism (Summary of PC2131 and PC3231)
 5. Basic Mathematical Methods (Summary of PC2174)
+6. Relativity
 
 ## Topics completed:
 1. Coming soon!
