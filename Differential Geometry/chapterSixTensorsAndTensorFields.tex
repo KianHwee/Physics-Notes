@@ -1,0 +1,334 @@
+\chapter{Tensors and Tensor fields}
+  \section{Preliminaries: Linear Algebra recap}
+    \label{sec: preliminaries linear algebra recap}
+    \subsection{Multilinear maps}
+      \label{subsec: multilinear maps}
+      \begin{definition}[Multilinear maps]
+        Let $V_1, V_2, ..., V_n; W$ be vector spaces. Let $V_1 \cross
+        V_2,...,\cross V_n$ be set\footnote{This is just the Cartesian product
+        btw.} of all ordered $n$-tuples $(v_1,v_2,...,v_n)$, where $v_i \in
+        V_i$. A mapping \[\phi: V_1 \cross V_2 \cross ... \cross V_n
+        \rightarrow W\] is called multilinear if it satisfies the condition
+        \begin{equation*}
+          \begin{split}
+        \phi(v_1,v_2,...,(\alpha v_i + \beta v_i^\prime), v_{i+1}, ... ,&v_n) =
+        \\
+        \alpha \phi(v_1,v_2,...,v_i, v_{i+1}, ... ,&v_n) + \beta
+        \phi(v_1,v_2,...,v_i^\prime, v_{i+1}, ... ,v_n)
+          \end{split}
+        \end{equation*}
+        where $\alpha,\beta \in \mathbb{R}$, for $i = 1,2,...,n$.
+      \end{definition}
+      \begin{remark}
+        Roughly speaking, a map $\phi$ is said to be multilinear if it is
+        linear in each of its "variables" separately. We will denote the set of
+        all multilinear maps of $V_1 \cross V_2,...,\cross V_n$ into $W$ as
+        $\mathcal{L}(V_1,V_2,...,V_n;W)$. Then, the set $
+        \mathcal{L}(V_1,V_2,...,V_n;W)$ becomes a vector space in a natural
+        way. First, we define the binary addition operator as:
+        \[\left(\phi_1 + \phi_2\right)(v_1,v_2,...,v_n) =\phi_1(v_1,v_2,...,v_n)
+        + \phi_2(v_1,v_2,...,v_n)\]
+        and the scalar multiplication operator as:
+        \[\left(\alpha\phi\right)(v_1,v_2,...,v_n) =
+        \alpha\phi(v_1,v_2,...,v_n)\]
+        where $\phi_1,\phi_2,\phi \in \mathcal{L}(V_1,V_2,...,V_n;W)$ and
+        $\alpha \in \mathbb{R}$.
+        Then we can easily show that the set $\mathcal{L}(V_1,V_2,...,V_n;W)$
+        with the binary addition and scalar multiplication operators fulfil the axioms of a vector space.
+
+        It is important to note that the vector spaces $V_1,V_2,...,V_n$ can be
+        either the tangent spaces $T_p(\mathcal{M})$ or the cotangent spaces
+        $T^*_p(\mathcal{M})$, since both of these are vector spaces. The vector
+        space $W$ which appears in $\mathcal{L}(V_1,V_2,...,V_n;W)$ can also be $\mathbb{R}$ (which also has a vector space structure).
+      \end{remark}
+
+    \subsection{Tensor product of vector spaces}
+      Recall from section~\ref{sec: LA recap, dual of vector space} that if
+      we have a vector space $V_1$, then $V^*_1 \equiv \mathcal{L}(V_1,
+      \mathbb{R})$ is the set of all linear maps from $V_1$ to $\mathbb{R}$.
+      We can also similarly write $V_1 = \mathcal{L}(V_1^*;\mathbb{R})$, i.e
+      we can also regard $V_1$ as the set of all linear maps from $V_1^*$ to
+      $\mathbb{R}$. We shall use this idea to define the concept of a tensor
+      product of two vector spaces.
+
+      \subsubsection{Illustration with two vector spaces $V_1$, $V_2$}
+      Suppose that $V_1$ has a basis $\{e_1, e_2,...,e_n\}$ and $V_1^*$ has a
+      corresponding dual basis $\{f_1,...,f_n\}$. Also, suppose we have
+      another vector space $V_2 \equiv \mathcal{L}(V_2,\mathbb{R})$, with its
+      corresponding dual $V_2^*$. Let the basis of $V_2$ be $\{e_1^\prime,
+      e_2^\prime,...,e_n^\prime\}$, and let the basis of $V_2^*$ be
+      $\{f_1^\prime, f_2^\prime,...,f_n^\prime\}$.\\
+      Then, we define the tensor product of
+      $V_1^*$ and $V_2^*$ as:
+        \begin{equation}
+          V_1^* \otimes V_2^* \equiv \mathcal{L}(V_1,V_2;\mathbb{R})
+        \end{equation}
+      From subsection~\ref{subsec: multilinear maps}, we see that $V_1^*
+      \otimes V_2^*$ has a vector space structure. We shall define the basis
+      of $V_1^* \otimes V_2^*$ as a set of $n^2$ bilinear maps from $V_1
+      \cross V_2 \rightarrow \mathbb{R}$
+        \[ \{f_i \otimes f_j^\prime \, \, |i,j = 1,2,...n\}\]
+      such that 
+        \[ [f_i \otimes f_j^\prime] (e_k, e_h^\prime) = \delta_{ik}
+        \delta_{jh}\]
+      In other words, for $a = a_i e_i \in V_1$ and $b = b_j^\prime
+      e^\prime_j \in V_2$, we have:
+        \begin{align*}
+          [f_i \otimes f_j^\prime](a,b) 
+          &= [f_i \otimes f_j^\prime](a_k e_k ,b_h^\prime e^\prime_h) \\
+          &= a_k b_h [f_i \otimes f_j^\prime](e_k, e_h^\prime) \\
+          &= a_i b_j
+        \end{align*}
+      But anyway, since $\{f_i \otimes f_j^\prime \, \, |i,j = 1,2,...n\}$
+      form a basis for $V_1^* \otimes V_2^* \equiv
+      \mathcal{L}(V_1,V_2;\mathbb{R})$, we see that we can write $p = p_{ij}
+      f_i \otimes f_j^\prime$ as an arbitrary element of $V_1^* \otimes V_2^*
+      \equiv \mathcal{L}(V_1,V_2;\mathbb{R})$, where $p_{ij}$ are $n^2$
+      real numbers.
+
+      In fact from all the discussion above, we can similarly define:
+        \begin{enumerate}
+          \item{$V_1 \otimes V_2 \equiv \mathcal{L}(V_1^*, V_2^*;
+          \mathbb{R})$ where $q \in V_1 \otimes V_2$ can be written as
+          $q_{ij}e_i \otimes e_j^\prime$ and $[e_i \otimes
+          e_j^\prime](f_k,f^\prime_h) = \delta_{ik}\delta_{jh}$.}
+          \item{$V_1 \otimes V_2^* \equiv \mathcal{L}(V_1^*, V_2;
+          \mathbb{R})$ where $r \in V_1 \otimes V_2^*$ can be written as
+          $r_{ij}e_i \otimes f_j^\prime$ and $[e_i \otimes
+          f_j^\prime](f_k,e^\prime_h) = \delta_{ik}\delta_{jh}$.}
+          \item{$V_1^* \otimes V_2 \equiv \mathcal{L}(V_1, V_2^*;
+          \mathbb{R})$ where $s \in V_1^* \otimes V_2$ can be written as
+          $s_{ij}f_i \otimes e_j^\prime$ and $[f_i \otimes
+          e_j^\prime](e_k,f^\prime_h) = \delta_{ik}\delta_{jh}$.}
+        \end{enumerate}
+      
+      Of course, everything here can be trivially generalised; we can have
+      $V_1 \otimes V_2 \otimes V_3 \equiv
+      \mathcal{L}(V_1^*,V_2^*,V_3^*;\mathbb{R})$ etc etc. We shall call
+      elements of a tensor product space tensors. From our discussion, we
+      note that tensors are nothing more than multilinear maps.
+      \subsubsection{Tensor product of two vectors}
+       We can also define the notion of a tensor product of two vectors.
+       Consider two vectors $v_1,v_2 \in V$. Then, $v_1 \otimes v_2$ is an
+       element of $V \otimes V \equiv \mathcal{L}(V^*,V^*;\mathbb{R})$.
+
+      \begin{theorem}[Properties of the tensor product of vectors]
+        Suppose $v_1,v_2,w_1,w_2$ are all elements of some vector space
+        $V$, and suppose $\alpha \in \mathbb{R}$. Then we have:
+        \begin{enumerate}
+          \item{$(v_1 + v_2)\otimes w = v_1 \otimes w + v_2 \otimes w$ \label{item: property 1 of tensor product}}
+          \item{$v \otimes (w_1 + w_2) = v \otimes w_1 + v \otimes w_2$} 
+          \item{$(\alpha v) \otimes w = \alpha (v \otimes w)$} 
+          \item{$v \otimes (\alpha w) = \alpha(v \otimes w)$}
+        \end{enumerate}
+      \end{theorem}
+      \begin{remark}
+        The above theorem is also true when $v_1,v_2,w_1,w_2 \in V^*$ instead too; we just have to change the proof method below slightly.
+      \end{remark}
+      \begin{proof}[Rough sketch of a proof]
+        We shall prove item \ref{item: property 1 of tensor product}, the
+        rest can be proven in a similar fashion. Let $(k_1,k_2)$ be an
+        arbitrary element in $V^* \cross V^*$, and let $\{e_1,...,e_n\}$ be
+        a basis for $V$. For item \ref{item: property 1 of tensor product},
+        we have:
+        \begin{align*}
+          [(v_1 + v_2)\otimes w](k_1,k_2) 
+          &= [(v_1 + v_2)_i e_i \otimes w_h e_h](k_1,k_2) \\
+          &= [(v_1 + v_2)_i w_h (e_i \otimes  e_h)](k_1,k_2) \\
+          &= [({v_1}_i + {v_2}_i) w_h (e_i \otimes  e_h)](k_1,k_2) \\
+          &= ({v_1}_i + {v_2}_i) w_h [(e_i \otimes e_h)(k_1,k_2)] \\
+          &= ({v_1}_i w_h + {v_2}_i w_h) [(e_i \otimes e_h)(k_1,k_2)] \\
+          &= {v_1}_i w_h [(e_i \otimes e_h)(k_1,k_2)]+ {v_2}_i w_h [(e_i
+          \otimes e_h)(k_1,k_2)] \\
+          &= {v_1}_i w_h [(e_i \otimes e_h)(k_1,k_2)]+ {v_2}_i w_h [(e_i
+          \otimes e_h)(k_1,k_2)] \\
+          &= v_1 \otimes w + v_2 \otimes w
+        \end{align*}
+      \end{proof}
+    \section{Tensors in Differential Geometry}
+      Now, we shall apply everything derived in section~\ref{sec:
+      preliminaries linear algebra recap} to differential geometry. Recall
+      that elements of $T_p(\mathcal{M})$ can be regarded as linear maps from
+      $T_p^*(\mathcal{M}) \rightarrow \mathbb{R}$, and elements of
+      $T^*_p(\mathcal{M})$ can be regarded as linear maps from
+      $T_p(\mathcal{M}) \rightarrow \mathbb{R}$.
+      \begin{definition}[Tensor product of cotangent and tangent spaces]
+        \label{defn: diff geom tensor product defn}
+        The tensor product \[\bigotimes\limits^r T^*_p(\mathcal{M})
+        \bigotimes\limits^s T_p(\mathcal{M})\] of $r$ cotangent spaces and $s$
+        tangent spaces at $p \in \mathcal{M}$, called the space of
+        $r$-covariant $s$-contravariant tensors $T^{r,s}_p(\mathcal{M})$ is
+        the vector space of all multilinear maps on the cartesian product:
+        \[\underbrace{T_p(\mathcal{M}) \cross T_p(\mathcal{M}) \cross ...
+        \cross T_p(\mathcal{M})}_{r} \cross \underbrace{T^*_p(\mathcal{M})
+        \cross T^*_p(\mathcal{M}) \cross ... \cross T^*_p(\mathcal{M})}_{s}\]
+        to the real space $\mathbb{R}$.
+
+        \paragraph{Tl;Dr of definition~\ref{defn: diff geom tensor product
+        defn}}
+        \[\bigotimes\limits^r T^*_p(\mathcal{M}) \bigotimes\limits^s
+        T_p(\mathcal{M}) \equiv
+        \mathcal{L}(\underbrace{T_p(\mathcal{M}),T_p(\mathcal{M}),...,T_p(\mathcal{M})}_{r},\underbrace{T^*_p(\mathcal{M}),T^*_p(\mathcal{M}),...,T^*_p(\mathcal{M})}_{s}; \mathbb{R})
+        \]
+      \end{definition}
+      \begin{remark}
+        Let $\{e_1,...,e_n\}$ be a basis for $T_p(\mathcal{M})$, and let
+        $\{f^1,...,f^n\}$ be a basis for $T_p^*(\mathcal{M})$. Then, we can
+        write an arbitrary element of $\bigotimes\limits^r T^*_p(\mathcal{M})
+        \bigotimes\limits^s T_p(\mathcal{M})$ as:
+        \begin{equation}
+          \label{eqn: arbitrary element of tensor product space}
+          a \in \bigotimes\limits^r T^*_p(\mathcal{M}) \bigotimes\limits^s
+          T_p(\mathcal{M}) = a^{i_1,i_2,...,i_s}_{j_1,j_2,...,j_r}
+          f^{j_1}\otimes f^{j_2} \otimes ...\otimes f^{j_r} \otimes e_{i_1}
+          \otimes e_{i_2} \otimes ... \otimes e_{i_s}
+        \end{equation}
+        In a local coordinate chart $(U,\phi)$, just make the substitutions:
+        \[e_j \rightarrow \frac{\partial}{\partial x^j}, \quad f^i
+        \rightarrow dx^i\]
+        in equation~\ref{eqn: arbitrary element of tensor product space}.
+      \end{remark}
+      \subsection{Transformation properties of tensors}
+        We first derive the transformation properties of the basis vectors
+        $\frac{\partial}{\partial x^i}$ and $dx^i$.
+
+        Consider two charts $(U, \phi)$ and $(V, \psi)$ of a manifold
+        $\mathcal{M}$. For $p \in \mathcal{M}$, let $\phi(p) = (x^1,...,x^m)$
+        and let $\psi(p) = (x^{\prime 1},...,x^{\prime m})$. Let $v \in
+        T_p(\mathcal{M})$. Then, we have:
+        \begin{equation*}
+          % \label{eqn: transformation property of basis vector part 1}
+          v \xrightarrow[(U,\phi)]{\text{Local chart}} v^j
+          \frac{\partial}{\partial x^j}
+        \end{equation*}
+        and 
+        \begin{equation*}
+          v \xrightarrow[(V, \psi)]{\text{Local chart}} v^{\prime i}
+          \frac{\partial}{\partial x^{\prime i}}
+        \end{equation*}
+        We recall that for a tangent vector $v \in T_p(\mathcal{M})$, under a
+        change of coordinates\footnote{I.e, when we go from one local chart
+        to another.}, we have:
+          \[v^{\prime i} = \frac{\partial x^{\prime i}}{\partial x^j} v^j\]
+        Thus, we have:
+        \begin{equation*}
+          % \label{eqn: transformation property of basis vector part 2}
+          v \xrightarrow[(V, \psi)]{\text{Local chart}} v^j \frac{\partial
+          x^{\prime i}}{\partial x^j} \frac{\partial}{\partial x^{\prime
+          i}}
+        \end{equation*}
+        Comparing this result with the expressions above,
+        % in equation~\ref{eqn: transformation
+        % property of basis vector part 1} and equation~\ref{eqn:
+        % transformation property of basis vector part 2},
+        we see that when we
+        go from the $(U,\phi)$ chart to the $(V,\psi)$ chart, we can consider
+        the basis vector has having undergone the following transformation:
+        \begin{equation}
+          \label{eqn: transformation property of basis vector part 3}
+            \frac{\partial}{\partial x^j} = \frac{\partial x^{\prime
+            i}}{\partial x^j} \frac{\partial}{\partial x^{\prime i}}
+        \end{equation}
+        which tbh is not that impressive of a result; it is nothing but the
+        chain rule.
+
+        Similarly, for $\omega \in T_p^*(\mathcal{M})$, we have:
+        \begin{equation*}
+          \omega \xrightarrow[(U,\phi)]{\text{Local chart}} \omega_i dx^i
+        \end{equation*}
+        and 
+        \begin{equation*}
+          \omega \xrightarrow[(V,\psi)]{\text{Local chart}} \omega^\prime_j {dx^\prime}^j
+        \end{equation*}
+        Recall again that for a cotangent vector $\omega \in
+        T_p^*(\mathcal{M})$, under a change of coordinates, we have:
+        \[\omega^\prime_{j} = \omega_{i} \frac{\partial x^i}{\partial x^{\prime j}}\]
+        Thus, we have:
+        \begin{equation*}
+          \omega \xrightarrow[(V,\psi)]{\text{Local chart}} \omega_{i} \frac{\partial x^i}{\partial x^{\prime j}} {dx^\prime}^j
+        \end{equation*}
+        Comparing this result with the expressions above,
+        % in equation~\ref{eqn: transformation
+        % property of basis vector part 1} and equation~\ref{eqn:
+        % transformation property of basis vector part 2},
+        we see that when we
+        go from the $(U,\phi)$ chart to the $(V,\psi)$ chart, we can consider
+        the basis vector has having undergone the following transformation:
+        \begin{equation}
+          \label{eqn: transformation property of basis vector part 4}
+            dx^i = \frac{\partial x^i}{\partial x^{\prime j}} {dx^\prime}^j
+            % \frac{\partial}{\partial x^j} = \frac{\partial x^{\prime
+            % i}}{\partial x^j} \frac{\partial}{\partial x^{\prime i}}
+        \end{equation}
+        which tbh is not that impressive of a result again; it is nothing but
+        the chain rule.
+
+        Now, consider $a \in T^{r,s}_p(\mathcal{M})$. We have: 
+        \begin{equation}
+          \label{eqn: tensor transformation rule part 1}
+          a \xrightarrow[(U,\phi)]{\text{Local chart}}
+          a^{i_1,i_2,...,i_s}_{j_1,j_2,...,j_r} dx^{j_1}\otimes dx^{j_2}
+          \otimes ...\otimes dx^{j_r} \otimes \frac{\partial}{\partial
+          x^{i_1}} \otimes \frac{\partial}{\partial x^{i_2}} \otimes ...
+          \otimes \frac{\partial}{\partial x^{i_s}}
+        \end{equation}
+        and 
+        \begin{equation}
+          \label{eqn: tensor transformation rule part 2}
+          a \xrightarrow[(V,\psi)]{\text{Local chart}}
+          a^{\prime k_1,k_2,...,k_s}_{h_1,h_2,...,h_r} dx^{\prime h_1}\otimes dx^{\prime h_2}
+          \otimes ...\otimes dx^{\prime h_r} \otimes \frac{\partial}{\partial
+          x^{\prime k_1}} \otimes \frac{\partial}{\partial x^{\prime k_2}} \otimes ...
+          \otimes \frac{\partial}{\partial x^{\prime k_s}}
+        \end{equation}
+        Now, putting in the results from equation~\ref{eqn: transformation
+        property of basis vector part 3} and equation~\ref{eqn:
+        transformation property of basis vector part 4} in equation~\ref{eqn:
+        tensor transformation rule part 1}, and then comparing with equation~
+        \ref{eqn: tensor transformation rule part 2} we have:
+        \begin{equation}
+          a^{\prime k_1,k_2,...,k_s}_{h_1,h_2,...,h_r} =
+          a^{i_1,i_2,...,i_s}_{j_1,j_2,...,j_r} \left(\frac{\partial
+          x^{j_1}}{\partial x^{\prime h_1}} \frac{\partial x^{j_2}}{\partial
+          x^{\prime h_2}},..., \frac{\partial x^{j_r}}{\partial x^{\prime
+          h_r}} \right) \left(\frac{\partial x^{\prime k_1}}{\partial x^{i_1}}
+          \frac{\partial x^{\prime k_2}}{\partial x^{i_2}} ,...,
+          \frac{\partial x^{\prime k_s}}{\partial x^{i_s}}\right)
+        \end{equation}
+        which is the transformation rule for the components of the tensor
+        $a\in T^{r,s}_p(\mathcal{M})$ under a change of coordinates.
+      \subsection{Tensor contraction}
+        \textcolor{red}{To do!}
+      
+    \section{Tensor fields on a manifold}
+      \begin{definition}[Tensor field]
+        An $(r-s)$ tensor field on a manifold is smooth assignment of a
+        $r$-covariant, $s$-contravariant tensor to each point $p \in
+        \mathcal{M}$. 
+      \end{definition}
+      \begin{remark}
+        In a chart $(U, \phi)$, with $x = \phi(p)$, the local representation of a tensor field is:
+        \[a^{i_1,i_2,...,i_s}_{j_1,j_2,...,j_r}(x)dx^{j_1}\otimes dx^{j_2}
+        \otimes ...\otimes dx^{j_r} \otimes \frac{\partial}{\partial x^{i_1}}
+        \otimes \frac{\partial}{\partial x^{i_2}} \otimes ... \otimes
+        \frac{\partial}{\partial x^{i_s}}\]
+        Smooth just means that the function
+        $a^{i_1,i_2,...,i_s}_{j_1,j_2,...,j_r}(x)$ is a smooth function of
+        $x$.
+      \end{remark}
+      \subsection{Transformation properties of tensor fields}
+        Under a change of coordinates, tensor fields inherit their
+        transformation properties directly from how tensors transform. I.e,
+        we have:
+        \begin{equation}
+          a^{\prime k_1,k_2,...,k_s}_{h_1,h_2,...,h_r}(x^\prime) =
+          a^{i_1,i_2,...,i_s}_{j_1,j_2,...,j_r}(x) \left(\frac{\partial
+          x^{j_1}}{\partial x^{\prime h_1}} \frac{\partial x^{j_2}}{\partial
+          x^{\prime h_2}},..., \frac{\partial x^{j_r}}{\partial x^{\prime
+          h_r}} \right) \left(\frac{\partial x^{\prime k_1}}{\partial
+          x^{i_1}} \frac{\partial x^{\prime k_2}}{\partial x^{i_2}} ,...,
+          \frac{\partial x^{\prime k_s}}{\partial x^{i_s}}\right)
+        \end{equation}
+
+
+      

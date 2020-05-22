@@ -1,0 +1,309 @@
+\chapter{Cotangent Spaces and One Forms}
+  \section{Linear algebra recap: The dual of a vector space}
+    \label{sec: LA recap, dual of vector space}
+    This section is merely a recap of linear algebra. For more information,
+    one can refer to textbooks on linear algebra...
+
+    Consider two vector spaces $V$ and $W$, and the set of all linear
+    transformations from $V$ to $W$, denoted as $\mathcal{L}(V,W)$. On this
+    set $\mathcal{L}(V,W)$, we define the binary addition operation as:
+    \[(T_1 + T_2)(\vec{v}) = T_1(\vec{v}) + T_2(\vec{v})\]
+    where $T_1,T_2 \in \mathcal{L}(V,W)$ and $\vec{v} \in V$.
+    We also define the scalar multiplication operation as: 
+    \[(cT)(\vec{v}) = cT(\vec{v})\] 
+    where $T \in \mathcal{L}(V,W)$, $\vec{v} \in V$ and $c \in \mathbb{F}$
+    where $\mathbb{F}$ is any field (e.g $\mathbb{R}$, $\mathbb{C}$).
+    \begin{theorem}[$\mathcal{L}(V,W)$ with the binary addition and scalar
+    multiplication defined above is a vector space over $\mathbb{F}$]
+      \label{thm: lame dual space theorem}
+    \end{theorem}
+    \begin{proof}
+      Left as an exercise, just verify that all the axioms of vector spaces
+      are fulfilled. Note that the zero vector in $\mathcal{L}(V,W)$ is the
+      zero map from $V$ to $W$, and the additive inverse of $T \in
+      \mathcal{L}(V,W)$ is $-T \in \mathcal{L}(V,W)$, defined by $(-T)(\vec{v})
+      = - T(\vec{v})$ where $\vec{v} \in V$.
+    \end{proof}
+    For the rest of this section, we shall assume that the field $\mathbb{F}$
+    is $\mathbb{R}$. Now, we define the dual space of $V$ as $V^{*} \equiv
+    \mathcal{L}(V, \mathbb{R})$\footnote{$\mathbb{R}$ has a vector space
+    structure, so we can do this.}. From theorem~\ref{thm: lame dual space
+    theorem}, $V^{*}$ has a vector space structure. We say that $V^{*}$ is
+    the set of all linear functionals from $V$ to $\mathbb{R}$, i.e elements
+    of $ V^{*} $ map $\vec{v} \in V$ to $\mathbb{R}$. 
+
+    Suppose that $V$ has a basis $B = \{e_1, e_2, ... e_n\}$. Then, $V^*$ has
+    a basis $B^* = \{f_1, f_2, ... f_n\}$ defined by: \[f_i(e_j) =
+    \delta_{ij}\]
+    
+    Note that we can also write $V = \mathcal{L}(V^*, \mathbb{R})$, i.e we
+    can consider $V$ the elements of $V$ as linear maps from $V^*$ to
+    $\mathbb{R}$. In this case, we can write: \[e_i(f_j) = \delta_{ij}\]
+    where $B = \{e_1, e_2, ... e_n\}$ is a basis of $V$ and $B^* = \{f_1,
+    f_2, ... f_n\}$ is a basis of $V^*$. 
+
+    To put both views on equal footing, we shall sometimes write: \[\langle
+    v, k \rangle \equiv v(k) = k(v)\] where $v \in V$ and $k \in V^*$.
+  \section{Cotangent Spaces}
+    \label{sec: Cotangent Spaces}
+    Now, we recall that $T_p(\mathcal{M})$ has a vector space structure.
+    Thus, from section~\ref{sec: LA recap, dual of vector space}, we can
+    define the another vector space dual to $T_p(\mathcal{M})$, which we
+    shall denote as the cotangent space $T^*_p(\mathcal{M})$. Let's formalise this idea.
+    \begin{definition}[Cotangent Space]
+      The cotangent space at $p \in \mathcal{M}$ is defined as
+      $T^*_p(\mathcal{M}) \equiv \mathcal{L}(T_p(\mathcal{M}), \mathbb{R})$.
+    \end{definition}
+    \begin{remark}
+      I.e, $k \in T_p^*(\mathcal{M})$ is a real linear map from
+      $T_p(\mathcal{M})$ into $\mathbb{R}$, defined by:
+      \begin{align*}
+        k: T_p(\mathcal{M}) &\rightarrow \mathbb{R} \\
+        v &\mapsto \langle k, v \rangle_p
+      \end{align*}
+      where $v$ is any vector in $T_p(\mathcal{M})$, and the subscript $p$
+      reminds us that all this happens only at a specific point $p \in
+      \mathcal{M}$. 
+    \end{remark}
+    As per discussed in section~\ref{sec: LA recap, dual of vector space}, if
+    $T_p(\mathcal{M})$ has a basis $\{e_1,...,e_m\}$, then the dual basis for
+    $T^*_p(\mathcal{M})$, which we denote as $\{f^1,...,f^m\}$ can be
+    uniquely determined by requiring that:
+    \begin{equation}
+      \label{eqn: dual basis defn}
+      \langle f^i, e_j \rangle_p = \delta^i_j
+    \end{equation}
+    for all $i,j = 1,...,m$.
+    \subsection{Note: positioning of indices}
+      As the astute reader might have noticed, components of tangent vectors
+      are labelled with upper indices, whereas basis vectors are labelled with
+      lower indices. Similarly, components of cotangent vectors will be
+      labelled with lower indices, and basis cotangent vectors will be labelled
+      with upper indices. The position of the indices remind us of the
+      transformation rules under a change of basis (i.e, when we move from one
+      local chart to another). Things with upper indices transform
+      contravariantly, like: \[v^{\prime i} = \frac{\partial x^{\prime
+      i}}{\partial x^j} v^j\] whereas things with lower indices transform
+      covariantly, like: \[k^{\prime}_i = \frac{\partial x^{j}}{\partial
+      x^{\prime}_i} k_j \] It has been shown in the derivation of
+      equation~\ref{eqn: Tangent vector component contravariant transformation}
+      that the components of a tangent vector do indeed transform
+      contravariantly, and it will be shown in subsection~\ref{subsec:
+      transformation property of cotangent vectors under coord change} that
+      components of a cotangent vector transform covariantly.
+    \subsection{$T^*_p(\mathcal{M})$ in a local chart $(U, \phi)$}
+      Recall that geometrically, tangent vectors are constructed from curves
+      on a manifold. In a local chart $(U,\phi)$, a tangent vector
+      $V^\sigma_p$ can be written as:
+      \[V^\sigma_p \xrightarrow[\text{chart}]{\text{Local}} V^i
+      \frac{\partial}{\partial x^i}\]
+      Two important concepts to recall:
+      \begin{enumerate}
+        \item{$\{\frac{\partial}{\partial x^1},...,\frac{\partial}{\partial
+          x^m}\}$ form a basis for $T_p(\mathcal{M})$ in a local chart. We
+          can regard $\frac{\partial}{\partial x^i}$ as a directional
+          derivative in the direction of increasing $x^i$.}
+        \item{$V^\sigma_p$ in a local chart is just a linear combination of
+          $\frac{\partial}{\partial x^i}$, where the components $V^i$ serve to
+          produce a new directional derivative in the direction specified by
+          $[\sigma]_p$.}
+      \end{enumerate}
+      Now, in a local chart, we want the dual basis of $T^*_p(\mathcal{M})$
+      to be dual to $\{\frac{\partial}{\partial
+      x^1},...,\frac{\partial}{\partial x^m}\}$, i.e we want to find a basis
+      of $T^*_p(\mathcal{M})$ such that equation~\ref{eqn: dual basis defn}
+      holds. Since in a local chart the $i$-th basis vector of
+      $T_p(\mathcal{M})$ is a directional derivative in the direction of
+      increasing $x^i$, a natural way to define the dual basis of
+      $T^*_p(\mathcal{M})$ would be to define it as $\{dx^1,...,dx^m\}$, i.e
+      we define the the $j$-th element of the dual basis to be a small change
+      in the $x^j$ direction. The result is that we have: \[\left\langle
+      \frac{\partial}{\partial x^i}, dx^j \right\rangle_{\phi(p)} =
+      \frac{\partial}{\partial x^i}(dx^j) = \delta^j_i\] which automatically
+      fulfils equation~\ref{eqn: dual basis defn}.
+      
+      Thus, for an arbitrary tangent vector $V^i \frac{\partial}{\partial
+      x^i}$, we have:
+      \[\left\langle V^i \frac{\partial}{\partial x^i}, dx^j
+      \right\rangle_{\phi(p)} = V^j \]
+      I.e, the basis cotangent vector $dx^j$ acting on an arbitrary tangent
+      vector $V^i \frac{\partial}{\partial x^i}$ gives the length of that tangent
+      vector in the $x^j$ direction.
+
+      Anyway, since in a local chart $\{dx^1,...,dx^m\}$ is a basis for
+      $T^*_p(\mathcal{M})$, we see that for $k \in T^*_p(\mathcal{M})$, $k$
+      has local representation $k_i dx^i$.
+  \section{The pull-back map between cotangent spaces}
+    Recall from section~\ref{sec: push forward between tangent spaces} that
+    under a mapping $\mathcal{F}: \mathcal{M} \rightarrow \mathcal{N}$ from a
+    manifold $\mathcal{M}$ into a manifold $\mathcal{N}$, we could define the
+    notion of a push-forward map between the tangent spaces of the two
+    manifolds
+    \[\mathcal{F}_* : T_p(\mathcal{M}) \rightarrow
+    T_{\mathcal{F}(p)}(\mathcal{N})\]
+    In the sense of cotangent spaces the map $\mathcal{F}$ induces a "pull-back" map between the two cotangent spaces:
+    \[\mathcal{F}^* : T^*_{\mathcal{F}(p)}(\mathcal{N}) \rightarrow
+    T^*_p(\mathcal{M})\]
+    defined through
+    \[\left\langle \mathcal{F}^*k, v \right\rangle_p = \left\langle
+    k, \mathcal{F}_*v \right\rangle_{\mathcal{F}(p)}\] for all $k \in
+    T^*_{\mathcal{F}(p)}(N)$ and $v \in T_p(\mathcal{M})$. Now, at this
+    juncture we shall introduce a theorem regarding this pull-back map.
+    \begin{theorem}[Composition of pull-back maps]
+      Suppose that $\mathcal{M}$,$\mathcal{N}$,$\mathcal{P}$ are three differentiable manifolds with differentiable maps:
+      \[\mathcal{M} \xrightarrow{\mathcal{F}_1} \mathcal{N}
+      \xrightarrow{\mathcal{F}_2} \mathcal{P}\]
+      Then, we have:
+      \[\left(\mathcal{F}_2 \circ \mathcal{F}_1\right)^* = \mathcal{F}_1^*
+      \circ \mathcal{F}_2^*\]
+    \end{theorem}
+    \begin{proof}[Rough sketch of a proof]
+      First, we can easily prove that $\left( \mathcal{F}_2 \circ
+      \mathcal{F}_1\right)_*$ = ${\mathcal{F}_2}_* \circ {\mathcal{F}_1}_*$.
+      Then, we just use the definition of the pull-back map twice.
+    \end{proof}
+
+    The pull-back map defined above is very useful, and allows us to determine many properties of cotangent vectors based on the properties of tangent vectors. We shall see two applications below.
+
+    \subsection{Application one: Constructing the basis for
+    $T^*_p(\mathcal{M})$}
+      Recall from subsection~\ref{subsec: push forward map induced by a homeomorphism} that if $\{\frac{\partial}{\partial
+      x^1},...,\frac{\partial}{\partial x^1}\}$ is a basis of
+      $T_p(\mathcal{M})$ in a local chart $(U, \phi)$, then the push forward
+      map $\phi^{-1}_*$ allows us to determine the basis $\{e_1,...,e_m\}$ of
+      $T_p(\mathcal{M})$.
+      We can construct the basis for $T^*_p(\mathcal{M})$ in a similar way. We have: 
+      \begin{align*}
+        \left\langle \phi^* dx^i, e_j \right\rangle_p 
+        &= \left\langle dx^i, \phi_*e_j \right\rangle_{\phi(p)} \\
+        &= \left\langle dx^i, \frac{\partial}{\partial x^j} \right\rangle_{\phi(p)} \\
+        &= \delta^i_j
+      \end{align*}
+      which tells if we define $f^i = \phi^* dx^i$, then $\{f^1,...,f^m\}$
+      forms the dual basis for $T^{*}_p(\mathcal{M})$.
+    \subsection{Application two: Transformation property of cotangent vectors under a change of coords}
+      \label{subsec: transformation property of cotangent vectors under coord change}
+      Suppose that $(U,\phi)$ and $(V,\psi)$ are two charts of a manifold
+      $\mathcal{M}$. Consider a point $p \in U \cap V$. Let $k \in
+      T^*_p(\mathcal{M})$ and $v \in T_p(\mathcal{M})$. Also, let $\bar{k},
+      \bar{v}$ and $\bar{k}^\prime, \bar{v}^\prime$ be the coordinate
+      representations of $k, v$ in the local charts $(U,\phi)$, $(V,\psi)$
+      respectively. Aim: determine how the components of $\bar{k}^\prime$ are
+      related to the components of $\bar{k}$.\\ Since we have:
+      \begin{align*}
+        \left\langle \bar{k}, \bar{v}\right\rangle_{\phi(p)}
+        &= \left\langle \bar{k}, \phi_{*} v\right\rangle_{\phi(p)} \\
+        &= \left\langle \phi^{*}\bar{k},  v\right\rangle_{p} \\
+        &= \left\langle k,  v\right\rangle_{p}
+      \end{align*}
+      and we can similarly show:
+        \[\left\langle \bar{k}^\prime, \bar{v}^\prime\right\rangle_{\psi(p)}
+        = \left\langle k, v\right\rangle_{p}\]
+      we arrive at this result:
+        \begin{equation}
+          \label{eqn: contraction coordinate independence}
+          \left\langle \bar{k}^\prime, \bar{v}^\prime\right\rangle_{\psi(p)}
+          = \left\langle \bar{k}, \bar{v}\right\rangle_{\phi(p)}
+        \end{equation}
+      First, we evaluate the LHS of equation~\ref{eqn: contraction coordinate
+      independence} to give us:
+      \begin{align}
+        \left\langle \bar{k}^\prime, \bar{v}^\prime\right\rangle_{\psi(p)} 
+        &= \bar{k}_{i}^{\prime} \bar{v}^{\prime j} \left\langle dx^{\prime i} ,
+        \frac{\partial}{\partial x^{\prime j}} \right\rangle \nonumber \\
+        &= \bar{k}_{i}^{\prime} \bar{v}^{\prime j} \delta^i_j \nonumber \\
+        &= \bar{k}_{i}^{\prime} \bar{v}^{\prime i} \label{eqn:
+        covector change of coord part 1}
+      \end{align}
+      Then, we can simiarly evaluate the RHS of equation~\ref{eqn: contraction coordinate independence} to give us:
+      \begin{equation}
+        \label{eqn: covector change of coord eqn part 2}
+        \left\langle \bar{k}, \bar{v}\right\rangle_{\phi(p)} = \bar{k}_j
+        \bar{v}^j
+      \end{equation}
+      Now, we know that $\overline{\mathcal{F}_*}\bar{v} = \bar{v}^\prime$,
+      and we also know that $\bar{v}^{\prime i} = \frac{\partial x^{\prime
+      i}}{\partial x^j} \bar{v}^j$. Thus, using this as well as
+      equations~\ref{eqn: covector change of coord part 1}, \ref{eqn:
+      covector change of coord eqn part 2} we have:
+      \begin{gather}
+        \left\langle \bar{k}^\prime, \bar{v}^\prime\right\rangle_{\psi(p)} =
+        \left\langle \bar{k}, \bar{v}\right\rangle_{\phi(p)} \nonumber\\
+        \implies \bar{k}_{i}^{\prime} \bar{v}^{\prime i} = \bar{k}_j
+        \bar{v}^j \nonumber\\
+        \implies \bar{k}_{i}^{\prime} \left(\frac{\partial x^{\prime
+        i}}{\partial x^j} \bar{v}^j \right) = \bar{k}_j \bar{v}^j \nonumber\\
+        \implies \bar{k}_{i}^{\prime} \left(\frac{\partial x^{\prime
+        i}}{\partial x^j} \right) = \bar{k}_j \label{eqn: covector change of coord eqn part 3}
+      \end{gather}
+      We can then easily invert\footnote{We do this inversion either by
+      swapping the primed and unprimed variables, or we write the equation in
+      matrix form and then invert. When we do the latter approach, we realise
+      that $\left(\frac{\partial x^j}{\partial x^{\prime i}} \right)$ is
+      nothing more than just entries of the Jacobian matrix of the coordinate
+      transform.} equation~\ref{eqn: covector change of coord eqn part 3} to
+      give us:
+      \begin{equation}
+        \bar{k}_{i}^{\prime} = \left(\frac{\partial x^j}{\partial x^{\prime
+        i}} \right) \bar{k}_j
+      \end{equation}
+      which tells us how the components of a cotangent vector transform under
+      coordinate transformation. As can be seen, the components transform
+      covariantly.
+  \section{One-forms}
+    \begin{definition}[1-form]
+      \label{defn: one form defn}
+      A one-form $\omega$ on $\mathcal{M}$ is a smooth assignment of a
+      cotangent vector $\omega_p \in T_p^*(\mathcal{M})$ to each point $p \in
+      \mathcal{M}$. Here, "smooth" means that for any vector field $X \in \mathcal{X}(\mathcal{M})$, the real-valued function
+        \[ \left\langle\omega, \mathcal{X}\right\rangle(p) = \left\langle
+        \omega_p, X_p \right\rangle\]
+      is smooth.
+    \end{definition}
+    \begin{remark}
+      To better understand the notion of smoothness, we first go to a local
+      coordinate chart $(U, \phi)$. We note that:
+      \begin{align*}
+        \left\langle \omega_p, X_p \right\rangle_p
+        &= \left\langle \phi^* \bar{\omega}_p, X_p \right\rangle_p \\
+        &= \left\langle  \bar{\omega}_p, \phi_* X_p \right\rangle_{\phi(p)}\\
+        &= \left\langle  \bar{\omega}_p, \bar{X}_p \right\rangle_{x}
+      \end{align*}
+      where in the last line, we have defined $x = \phi(p)$. Now, since
+      $\bar{X}_p = \bar{X}^i(x) \frac{\partial}{\partial x^i}$ and
+      $\bar{\omega}_p = \bar{\omega}_j(x) dx^j$, we have:
+      \begin{equation}
+        \label{eqn: one form smoothness defn part 1}
+        \left\langle \omega_p, X_p \right\rangle_p = \bar{\omega}_i(x)
+        \bar{X}^i(x)
+      \end{equation}
+      Thus, "smooth assignment of a cotangent vector $\omega_p$" in
+      definition~\ref{defn: one form defn} just means that for any chart
+      $(U,\phi)$ of $\mathcal{M}$, and for any $X \in
+      \mathcal{X}(\mathcal{M})$, the expression $\bar{\omega}(x)_i
+      \bar{X}^i(x)$ is a smooth function of $x$.
+
+      In fact, since $X^i(x)$ is by definition already a smooth function of $x$, we just require $\omega_i(x)$ to be a smooth function of $x$.
+
+      \paragraph{TL:DR} Let $(U, \phi)$ is an arbitrary chart of the
+      manifold, and let $x = \phi(p)$ for arbitrary $p \in \mathcal{M}$. A
+      one-form $\omega$ has a local coord representation of $\omega_i(x)
+      dx^i$. The function $\omega_i(x)$ is a smooth function of $x$.
+      \subsection{The pull-back of a one-form}
+        The pull-back of a one-form is very similar to the pull-back of
+        cotangent vector. Just note that since a one-form is a smooth
+        assignment of cotangent vectors to all points in the manifold, we have to pull-back at every point in the manifold.
+        \begin{definition}[Pull-back of a 1-form]
+          Let $\mathcal{F}: \mathcal{M} \rightarrow \mathcal{N}$ be a
+          differentiable map\footnote{I'm not sure if differentiable map is good enough...do we actually require a diffeomorphism? I'm not sure.} between two manifolds $\mathcal{M}$ and
+          $\mathcal{N}$. If $\omega$ is a one-form on $\mathcal{N}$ then the
+          pull-back of $\omega$ is the one-form $\mathcal{F}^*\omega$ on
+          $\mathcal{M}$ defined by:
+            \[\left\langle \mathcal{F}^*\omega, v \right\rangle_p =
+            \left\langle \omega, \mathcal{F}_*v
+            \right\rangle_{\mathcal{F}(p)} \]
+          for all points $p \in \mathcal{M}$ and all tangent vectors $v \in T_p(\mathcal{M})$.
+        \end{definition}
+    \end{remark}
+
+      

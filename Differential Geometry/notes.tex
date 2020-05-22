@@ -1,0 +1,131 @@
+%For two sided printing
+% \documentclass[a4paper,12pt,twoside,onecolumn,openright,final]{memoir} %for printing two sided
+
+%For one sided printing
+\documentclass[a4paper,12pt,oneside,onecolumn,final]{memoir} %for electronic viewing and one-sided printing
+
+%Memoir class geometry, stole it from online manual
+\settrimmedsize{297mm}{210mm}{*}
+\setlength{\trimtop}{0pt}
+\setlength{\trimedge}{\stockwidth}
+\addtolength{\trimedge}{-\paperwidth}
+\settypeblocksize{634pt}{448.13pt}{*} %original is 634
+\setulmargins{4cm}{*}{*} %original is 4 lol
+\setlrmargins{*}{*}{1.5}
+\setmarginnotes{17pt}{51pt}{\onelineskip}
+\setheadfoot{\onelineskip}{2\onelineskip}
+\setheaderspaces{*}{2\onelineskip}{*}
+\checkandfixthelayout
+
+\usepackage[nodate, 12hr]{datetime} %for time and date
+\title{Brief Notes on Differential Geometry}
+\author{Lim Kian Hwee}
+\date{\small Last updated: \today, \currenttime} %leave blank if dont want date
+
+%Packages for paper formatting, figures, hyperref, etc
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{parskip} %package to tweak paragraph skipping
+\usepackage{graphicx}
+\usepackage[space]{grffile} %For file names with spaces
+\graphicspath{{./Figures/}}
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\counterwithin{footnote}{chapter}
+\usepackage{float}
+\usepackage{comment} 
+\usepackage{wrapfig}
+\setcounter{tocdepth}{1} %stops TOC numbering at sections
+\setsecnumdepth{subsection} %numbers subsections
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+%For quotation marks to behave well
+\usepackage{csquotes}
+% \MakeOuterQuote{"}
+
+%Blind text
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\blindmathtrue
+
+%Math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\numberwithin{equation}{chapter} %numbers equations according to chapters
+%\allowdisplaybreaks %equations in environment can page break
+\usepackage{physics}
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\theoremstyle{remark}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{plain}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+% \usepackage{coloremoji}
+
+%Alternate fonts 
+\usepackage{newtxtext,newtxmath} %this is good
+% \usepackage{fourier} %this is good
+% \usepackage{newpxtext,newpxmath} %this is good
+
+%The rest are...meh
+% \usepackage{libertine,libertinust1math} %this is quite good
+% \usepackage{fouriernc} %this is quite good
+% \usepackage{mathptmx} %looks quite bad
+
+%For new look
+% \usepackage{newpxtext} \usepackage[euler-digits]{eulervm} %looks disgusting
+
+\begin{document}
+  \frontmatter
+  \maketitle
+  \begin{KeepFromToc}
+    \tableofcontents %optional
+  \end{KeepFromToc}
+  \chapter{Foreword}
+    This set of notes is a summary of the NUS Physics module "Mathematical
+    Methods in Physics 3" (or MM3 for short) taken in my fourth year of study
+    in NUS. Naturally, the references for this set of notes would be:
+    \begin{enumerate}
+      \item{PC4274 Lecture Notes and tutorials, Kuldip}
+      \item{PC4274 Lecture Notes, Edward Teo (to a small extent)}
+    \end{enumerate}
+    The purpose of this set of notes is to summarise the key ideas of
+    Differential Geometry as I understand it, so that in the future I can
+    quickly reference this to get a brief idea of the topic. For more
+    detailed treatments, there are textbooks like Frankel, Nakahara, or just
+    the lecture notes themselves that are listed above. Unless absolutely
+    necessary, no examples will be given.
+
+    Also, Einsten summation convention will be used throughout. I.e, for
+    tensors, repeated upper and lower indices are summed over. Sometimes we
+    will sum over repeated indices for things that are not tensors, in which case we might sometimes sum over two repeated upper indices, or two repeated lower indices (sloppy notation, I know).
+
+    Lastly, most importantly, \emph{Soli Deo Gloria!}.
+
+  \mainmatter
+    \include{chapterOneBasicTopology}
+    \include{chapterTwoManifoldsAndCoordinates}
+    \include{chapterThreeTangentSpaces}
+    \include{chapterFourVectorFieldsAndIntegralCurves}
+    \include{chapterFiveCotangentSpacesAndOneForms}
+    \include{chapterSixTensorsAndTensorFields}
+    \include{chapterSevenLieDerivatives}
+    % \include{chapterEightnForms}
+    % \include{chapterNineExteriorDifferentiation}
+    % \include{chapterTenMetricTensor}
+    % \include{chapterElevenExteriorCalculus}
+    \include{thingsToAdd}
+  
+\end{document}
