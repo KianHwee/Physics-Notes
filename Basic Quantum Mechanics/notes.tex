@@ -1,0 +1,129 @@
+% For two sided printing
+% \documentclass[a4paper,12pt,twoside,onecolumn,openright,final]{memoir} %for printing two sided
+
+%For one sided printing
+\documentclass[a4paper,12pt,oneside,onecolumn,final]{memoir} %for electronic viewing and one-sided printing
+
+%Memoir class geometry, stole it from online manual
+\settrimmedsize{297mm}{210mm}{*}
+\setlength{\trimtop}{0pt}
+\setlength{\trimedge}{\stockwidth}
+\addtolength{\trimedge}{-\paperwidth}
+\settypeblocksize{634pt}{448.13pt}{*} %original is 634
+\setulmargins{4cm}{*}{*} %original is 4 lol
+\setlrmargins{*}{*}{1.5}
+\setmarginnotes{17pt}{51pt}{\onelineskip}
+\setheadfoot{\onelineskip}{2\onelineskip}
+\setheaderspaces{*}{2\onelineskip}{*}
+\checkandfixthelayout
+
+\usepackage[nodate, 12hr]{datetime} %for time and date
+\title{Brief notes on Basic Quantum Mechanics}
+\author{Lim Kian Hwee}
+\date{\small Last updated: \today, \currenttime} %leave blank if dont want date
+
+%Packages for paper formatting, figures, hyperref, etc
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{parskip} %package to tweak paragraph skipping
+\usepackage{graphicx}
+\usepackage[space]{grffile} %For file names with spaces
+\graphicspath{{./Figures/}}
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\counterwithin{footnote}{chapter}
+\usepackage{float}
+\usepackage{comment} 
+\usepackage{wrapfig}
+\setcounter{tocdepth}{1} %stops TOC numbering at sections
+\setsecnumdepth{subsection} %numbers subsections
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+%For quotation marks to behave well
+\usepackage{csquotes}
+% \MakeOuterQuote{"}
+
+%Blind text
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\blindmathtrue
+
+%Math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\numberwithin{equation}{chapter} %numbers equations according to chapters
+%\allowdisplaybreaks %equations in environment can page break
+\usepackage{physics}
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\theoremstyle{remark}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{plain}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+% \usepackage{coloremoji}
+
+%Alternate fonts 
+\usepackage{newtxtext,newtxmath} %this is good
+% \usepackage{fourier} %this is good
+% \usepackage{newpxtext,newpxmath} %this is good
+
+%The rest are...meh
+% \usepackage{libertine,libertinust1math} %this is quite good
+% \usepackage{fouriernc} %this is quite good
+% \usepackage{mathptmx} %looks quite bad
+
+%For new look
+% \usepackage{newpxtext} \usepackage[euler-digits]{eulervm} %looks disgusting
+
+
+\usepackage{biblatex}[sorting = none, style = nature]
+\addbibresource{"references.bib"}
+
+\begin{document}
+  \frontmatter
+  \maketitle
+  \begin{KeepFromToc}
+    \tableofcontents %optional
+  \end{KeepFromToc}
+  \chapter{Foreword}
+    This set of notes is a summary of the content covered in the NUS Physics
+    modules PC2130 and PC3130. For PC2130 I mainly used the textbooks
+    \cite{schwindt2015conceptual} and \cite{shankar1994principles}, whereas
+    for PC3130 I used mainly \cite{zettili2009quantum} and
+    \cite{cohen1992quantum}. The purpose of this set of notes is so that the
+    reader can quickly get the key ideas and derivations in standard
+    undergraduate quantum mechanics without referring to the textbooks. Basic
+    results from Linear Algebra will be used without proof (e.g, if two
+    operators commute then they can be simulaneously diagonalised, etc etc).
+
+    \printbibliography[type=book, heading=subbibliography,title={References}]
+
+    % Lastly, most importantly, \emph{Soli Deo Gloria!}.
+
+  \mainmatter
+    % \include{chapterOneBasicTopology}
+    % \include{chapterTwoManifoldsAndCoordinates}
+    % \include{chapterThreeTangentSpaces}
+    % \include{chapterFourVectorFieldsAndIntegralCurves}
+    % \include{chapterFiveCotangentSpacesAndOneForms}
+    % \include{chapterSixTensorsAndTensorFields}
+    % \include{chapterSevenLieDerivatives}
+    % \include{chapterEightnForms}
+    % \include{chapterNineExteriorDifferentiation}
+    % \include{chapterTenMetricTensor}
+    % \include{chapterElevenExteriorCalculus}
+    \include{thingsToAdd}
+  
+\end{document}
